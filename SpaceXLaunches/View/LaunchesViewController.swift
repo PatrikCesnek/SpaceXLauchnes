@@ -20,24 +20,24 @@ class LaunchesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     private func setupUI() {
-        title = "SpaceX Launches"
+        title = Constants.Strings.appTitle
         view.backgroundColor = .white
         
         searchBar.delegate = self
-        searchBar.placeholder = "Search by Mission Name"
+        searchBar.placeholder = Constants.Strings.searchBarPlaceholder
         navigationItem.titleView = searchBar
         
         tableView.frame = view.bounds
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellReuseIdentifier)
         view.addSubview(tableView)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(showSortingOptions))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: Constants.Strings.sort, style: .plain, target: self, action: #selector(showSortingOptions))
     }
     
     @objc private func showSortingOptions() {
-        let alert = UIAlertController(title: "Sort By", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: Constants.Strings.sortBy, message: nil, preferredStyle: .actionSheet)
         for option in LaunchesViewModel.SortingOption.allCases {
             alert.addAction(UIAlertAction(title: option.rawValue, style: .default) { _ in
                 self.viewModel.sortingOption = option
@@ -45,7 +45,7 @@ class LaunchesViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.tableView.reloadData()
             })
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: Constants.Strings.cancel, style: .cancel))
         present(alert, animated: true)
     }
     
@@ -54,7 +54,7 @@ class LaunchesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseIdentifier, for: indexPath)
         let launch = viewModel.filteredLaunches[indexPath.row]
         cell.textLabel?.text = launch.missionName
         return cell

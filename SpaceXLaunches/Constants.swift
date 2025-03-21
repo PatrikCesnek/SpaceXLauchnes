@@ -1,0 +1,20 @@
+//
+//  Constants.swift
+//  SpaceXLaunches
+//
+//  Created by Patrik Cesnek on 21/03/2025.
+//
+
+struct Constants {
+    static let cellReuseIdentifier = "cell"
+    
+    struct Strings {
+        static let rocket = "Rocket: ".localizedCapitalized
+        static let launchDate = "Launch date: ".localizedCapitalized
+        static let appTitle = "SpaceX Launches".localizedCapitalized
+        static let searchBarPlaceholder = "Search by Mission Name".localizedCapitalized
+        static let sort = "Sort".localizedCapitalized
+        static let sortBy = "Sort by: ".localizedCapitalized
+        static let cancel = "Cancel".localizedCapitalized
+    }
+}

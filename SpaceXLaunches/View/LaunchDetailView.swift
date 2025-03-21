@@ -25,13 +25,19 @@ struct LaunchDetailView: View {
                 .frame(width: 150, height: 150)
             }
             
-            Text("Rocket: \(launch.rocket.rocketName)")
-            Text("Launch Date: \(launch.launchDate)")
-            
-            if let details = launch.details {
-                Text(details)
-                    .padding()
+            VStack(alignment: .leading, spacing: 12) {
+                Text(Constants.Strings.rocket + launch.rocket.rocketName)
+                Text(Constants.Strings.launchDate + launch.launchDate)
+                
+                if let details = launch.details {
+                    Text(details)
+                        .font(.caption)
+                        .foregroundStyle(Color.secondary)
+                }
             }
+            .padding(16)
+            .font(.callout)
+            
             Spacer()
         }
         .padding()
@@ -43,8 +49,8 @@ struct LaunchDetailView: View {
         launch: Launch(
             missionName: "MissionName",
             launchDate: "1.1.2021",
-            rocket: Rocket(rocketName: "Rocket"),
-            details: nil,
+            rocket: Rocket(rocketName: "Rocket name"),
+            details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             links: Links(missionPatch: nil)
         )
     )
