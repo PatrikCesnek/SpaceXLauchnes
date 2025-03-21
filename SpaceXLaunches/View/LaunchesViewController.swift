@@ -5,6 +5,7 @@
 //  Created by Patrik Cesnek on 21/03/2025.
 //
 
+import SwiftUI
 import UIKit
 
 class LaunchesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
@@ -61,7 +62,9 @@ class LaunchesViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let launch = viewModel.filteredLaunches[indexPath.row]
-        print(launch.missionName)
+        let detailView = LaunchDetailView(launch: launch)
+        let hostingController = UIHostingController(rootView: detailView)
+        navigationController?.pushViewController(hostingController, animated: true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
