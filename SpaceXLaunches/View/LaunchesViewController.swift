@@ -23,9 +23,7 @@ class LaunchesViewController: UIViewController, UITableViewDataSource, UITableVi
         title = Constants.Strings.appTitle
         view.backgroundColor = .white
         
-        searchBar.delegate = self
-        searchBar.placeholder = Constants.Strings.searchBarPlaceholder
-        navigationItem.titleView = searchBar
+        navigationItem.title = Constants.Strings.appTitle
         
         tableView.frame = view.bounds
         tableView.dataSource = self
@@ -39,6 +37,16 @@ class LaunchesViewController: UIViewController, UITableViewDataSource, UITableVi
             target: self,
             action: #selector(showSortingOptions)
         )
+        
+        view.addSubview(searchBar)
+        searchBar.delegate = self
+        searchBar.placeholder = Constants.Strings.searchBarPlaceholder
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
     
     @objc private func showSortingOptions() {

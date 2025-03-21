@@ -12,10 +12,6 @@ struct LaunchDetailView: View {
     
     var body: some View {
         VStack {
-            Text(launch.missionName)
-                .font(.title)
-                .bold()
-            
             if let patchURL = launch.links.missionPatch, let url = URL(string: patchURL) {
                 AsyncImage(url: url) { image in
                     image
@@ -43,6 +39,7 @@ struct LaunchDetailView: View {
             Spacer()
         }
         .padding()
+        .navigationTitle(launch.missionName)
     }
 }
 
