@@ -16,5 +16,8 @@ struct Constants {
         static let sort = "Sort".localizedCapitalized
         static let sortBy = "Sort by: ".localizedCapitalized
         static let cancel = "Cancel".localizedCapitalized
+        static let dateAscending = "Date Ascending".localizedCapitalized
+        static let dateDescending = "Date Descending".localizedCapitalized
+        static let missionName = "Mission Name".localizedCapitalized
     }
 }

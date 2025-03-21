@@ -12,10 +12,18 @@ class LaunchesViewModel: NSObject {
     var filteredLaunches: [Launch] = []
     var sortingOption: SortingOption = .dateDescending
     
-    enum SortingOption: String, CaseIterable {
-        case dateAscending = "Date Ascending"
-        case dateDescending = "Date Descending"
-        case missionName = "Mission Name"
+    enum SortingOption: CaseIterable {
+        case dateAscending
+        case dateDescending
+        case missionName
+
+        var localized: String {
+            switch self {
+            case .dateAscending: return Constants.Strings.dateAscending
+            case .dateDescending: return Constants.Strings.dateDescending
+            case .missionName: return Constants.Strings.missionName
+            }
+        }
     }
     
     func fetchLaunches(completion: @escaping () -> Void) {

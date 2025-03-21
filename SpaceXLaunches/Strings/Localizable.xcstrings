@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "%@ %@" : {
-
+      "shouldTranslate" : false
     },
     "Cancel" : {
       "extractionState" : "manual",
@@ -15,6 +15,12 @@
         }
       }
     },
+    "Date Ascending" : {
+      "extractionState" : "manual"
+    },
+    "Date Descending" : {
+      "extractionState" : "manual"
+    },
     "Launch date: " : {
       "extractionState" : "manual",
       "localizations" : {
@@ -25,6 +31,9 @@
           }
         }
       }
+    },
+    "Mission Name" : {
+      "extractionState" : "manual"
     },
     "Rocket: " : {
       "extractionState" : "manual",

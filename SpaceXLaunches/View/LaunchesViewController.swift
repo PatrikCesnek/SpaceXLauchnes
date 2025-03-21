@@ -39,7 +39,7 @@ class LaunchesViewController: UIViewController, UITableViewDataSource, UITableVi
     @objc private func showSortingOptions() {
         let alert = UIAlertController(title: Constants.Strings.sortBy, message: nil, preferredStyle: .actionSheet)
         for option in LaunchesViewModel.SortingOption.allCases {
-            alert.addAction(UIAlertAction(title: option.rawValue, style: .default) { _ in
+            alert.addAction(UIAlertAction(title: option.localized, style: .default) { _ in
                 self.viewModel.sortingOption = option
                 self.viewModel.applySorting()
                 self.tableView.reloadData()
