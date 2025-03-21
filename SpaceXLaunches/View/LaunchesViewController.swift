@@ -33,19 +33,38 @@ class LaunchesViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellReuseIdentifier)
         view.addSubview(tableView)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: Constants.Strings.sort, style: .plain, target: self, action: #selector(showSortingOptions))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: Constants.Strings.sort,
+            style: .plain,
+            target: self,
+            action: #selector(showSortingOptions)
+        )
     }
     
     @objc private func showSortingOptions() {
-        let alert = UIAlertController(title: Constants.Strings.sortBy, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(
+            title: Constants.Strings.sortBy,
+            message: nil, preferredStyle: .actionSheet
+        )
         for option in LaunchesViewModel.SortingOption.allCases {
-            alert.addAction(UIAlertAction(title: option.localized, style: .default) { _ in
-                self.viewModel.sortingOption = option
-                self.viewModel.applySorting()
-                self.tableView.reloadData()
-            })
+            alert.addAction(
+                UIAlertAction(
+                    title: option.localized,
+                    style: .default
+                ) { _ in
+                    self.viewModel.sortingOption = option
+                    self.viewModel.applySorting()
+                    self.tableView.reloadData()
+                })
         }
-        alert.addAction(UIAlertAction(title: Constants.Strings.cancel, style: .cancel))
+        
+        alert.addAction(
+            UIAlertAction(
+                title: Constants.Strings.cancel,
+                style: .cancel
+            )
+        )
+        
         present(alert, animated: true)
     }
     

@@ -18,7 +18,9 @@ struct LaunchDetailView: View {
             
             if let patchURL = launch.links.missionPatch, let url = URL(string: patchURL) {
                 AsyncImage(url: url) { image in
-                    image.resizable().scaledToFit()
+                    image
+                        .resizable()
+                        .scaledToFit()
                 } placeholder: {
                     ProgressView()
                 }

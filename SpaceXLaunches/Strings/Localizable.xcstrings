@@ -13,10 +13,26 @@
       }
     },
     "Date Ascending" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Od najnovšieho"
+          }
+        }
+      }
     },
     "Date Descending" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Od najstaršieho"
+          }
+        }
+      }
     },
     "Launch date: " : {
       "extractionState" : "manual",
@@ -30,7 +46,15 @@
       }
     },
     "Mission Name" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Názov misie"
+          }
+        }
+      }
     },
     "Rocket: " : {
       "extractionState" : "manual",
