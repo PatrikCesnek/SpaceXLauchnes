@@ -59,10 +59,30 @@ class LaunchesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     private func fetchLaunches() {
-        viewModel.fetchLaunches {
+        viewModel.fetchLaunches { errorMessage in
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
+            
+            if let message = errorMessage {
+                self.showErrorAlert(message: message)
+            }
         }
+    }
+    
+    private func showErrorAlert(message: String) {
+        let alert = UIAlertController(
+            title: Constants.Strings.errorTitle,
+            message: message,
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: Constants.Strings.retry, style: .default) { _ in
+            self.fetchLaunches()
+        })
+        
+        alert.addAction(UIAlertAction(title: Constants.Strings.cancel, style: .cancel))
+        
+        present(alert, animated: true)
     }
     
     @objc private func refreshLaunches() {

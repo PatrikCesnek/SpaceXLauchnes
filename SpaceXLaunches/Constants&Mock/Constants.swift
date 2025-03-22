@@ -19,5 +19,8 @@ struct Constants {
         static let dateAscending = "Date Ascending".localizedCapitalized
         static let dateDescending = "Date Descending".localizedCapitalized
         static let missionName = "Mission Name".localizedCapitalized
+        static let errorMessage = "Failed to fetch launches. Please try again.".localizedCapitalized
+        static let errorTitle = "Error".localizedCapitalized
+        static let retry = "Retry".localizedCapitalized
     }
 }

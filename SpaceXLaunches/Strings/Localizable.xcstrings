@@ -34,6 +34,28 @@
         }
       }
     },
+    "Error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chyba"
+          }
+        }
+      }
+    },
+    "Failed to fetch launches. Please try again." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sťahovanie štartov zlyhalo. Prosím skúste znovu."
+          }
+        }
+      }
+    },
     "Launch date: " : {
       "extractionState" : "manual",
       "localizations" : {
@@ -52,6 +74,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Názov misie"
+          }
+        }
+      }
+    },
+    "Retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skúsiť znovu"
           }
         }
       }

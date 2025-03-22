@@ -26,17 +26,20 @@ class LaunchesViewModel: NSObject {
         }
     }
     
-    func fetchLaunches(completion: @escaping () -> Void) {
+    func fetchLaunches(completion: @escaping (String?) -> Void) {
         APIManager.shared.fetchLaunches { result in
             switch result {
             case .success(let launches):
                 self.launches = launches
                 self.applySorting()
                 DispatchQueue.main.async {
-                    completion()
+                    completion(nil)
                 }
             case .failure(let error):
                 print("Error fetching launches: \(error)")
+                DispatchQueue.main.async {
+                    completion(Constants.Strings.errorMessage)
+                }
             }
         }
     }
