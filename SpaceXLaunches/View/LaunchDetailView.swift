@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LaunchDetailView: View {
     let launch: Launch
+    let formattedDate: String
     
     var body: some View {
         VStack {
@@ -25,7 +26,7 @@ struct LaunchDetailView: View {
             
             VStack(alignment: .leading, spacing: 12) {
                 Text(Constants.Strings.rocket + launch.rocket.rocketName)
-                Text(Constants.Strings.launchDate + launch.launchDate)
+                Text(Constants.Strings.launchDate + formattedDate)
                 
                 if let details = launch.details {
                     Text(details)
@@ -45,6 +46,7 @@ struct LaunchDetailView: View {
 
 #Preview {
     LaunchDetailView(
-        launch: Mock.mockLaunch
+        launch: Mock.mockLaunch,
+        formattedDate: "21/03/2025"
     )
 }

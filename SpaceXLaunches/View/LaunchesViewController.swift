@@ -129,7 +129,9 @@ class LaunchesViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let launch = viewModel.filteredLaunches[indexPath.row]
-        let detailView = LaunchDetailView(launch: launch)
+        let formattedDate = viewModel.formattedDate(for: launch)
+        
+        let detailView = LaunchDetailView(launch: launch, formattedDate: formattedDate)
         let hostingController = UIHostingController(rootView: detailView)
         navigationController?.pushViewController(hostingController, animated: true)
     }

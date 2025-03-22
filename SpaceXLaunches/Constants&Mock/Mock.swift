@@ -5,10 +5,12 @@
 //  Created by Patrik Cesnek on 21/03/2025.
 //
 
+import Foundation
+
 struct Mock {
     static let mockLaunch = Launch(
         missionName: "Crew-1",
-        launchDate: "16-11-2020",
+        launchDate: Date.now,
         rocket: mockRocket,
         details: mockDetails,
         links: mockLinks

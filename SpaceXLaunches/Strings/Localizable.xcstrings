@@ -56,6 +56,28 @@
         }
       }
     },
+    "Invalid date format:" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nesprávny formát dátumu:"
+          }
+        }
+      }
+    },
+    "Invalid URL:" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nesprávna URL"
+          }
+        }
+      }
+    },
     "Launch date: " : {
       "extractionState" : "manual",
       "localizations" : {
@@ -74,6 +96,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Názov misie"
+          }
+        }
+      }
+    },
+    "No data received" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Žiadne dáta"
           }
         }
       }

@@ -7,6 +7,9 @@
 
 struct Constants {
     static let cellReuseIdentifier = "cell"
+    static let launchesURLString = "https://api.spacexdata.com/v3/launches"
+    static let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    static let localeIdentifier = "en_US_POSIX"
     
     struct Strings {
         static let rocket = "Rocket: ".localizedCapitalized
@@ -22,5 +25,8 @@ struct Constants {
         static let errorMessage = "Failed to fetch launches. Please try again.".localizedCapitalized
         static let errorTitle = "Error".localizedCapitalized
         static let retry = "Retry".localizedCapitalized
+        static let invalidURLMessage = "Invalid URL".localizedCapitalized
+        static let noDataMessage = "No data received".localizedCapitalized
+        static let invalidDateFormatMessage = "Invalid date format:".localizedCapitalized
     }
 }

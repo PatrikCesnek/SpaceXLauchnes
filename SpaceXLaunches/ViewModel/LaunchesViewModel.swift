@@ -62,4 +62,11 @@ class LaunchesViewModel: NSObject {
             filteredLaunches = launches.filter { $0.missionName.lowercased().contains(query.lowercased()) }
         }
     }
+    
+    func formattedDate(for launch: Launch) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter.string(from: launch.launchDate)
+    }
 }
