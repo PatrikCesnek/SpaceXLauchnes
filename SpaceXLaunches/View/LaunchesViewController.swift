@@ -12,41 +12,61 @@ class LaunchesViewController: UIViewController, UITableViewDataSource, UITableVi
     private let tableView = UITableView()
     private let searchBar = UISearchBar()
     private let viewModel = LaunchesViewModel()
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        viewModel.fetchLaunches { self.tableView.reloadData() }
+        self.fetchLaunches()
     }
     
     private func setupUI() {
         title = Constants.Strings.appTitle
         view.backgroundColor = .white
-        
         navigationItem.title = Constants.Strings.appTitle
-        
-        tableView.frame = view.bounds
+
+        view.addSubview(searchBar)
+        searchBar.delegate = self
+        searchBar.placeholder = Constants.Strings.searchBarPlaceholder
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellReuseIdentifier)
-        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
+        refreshControl.addTarget(self, action: #selector(refreshLaunches), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+
+        NSLayoutConstraint.activate([
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
+            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: Constants.Strings.sort,
             style: .plain,
             target: self,
             action: #selector(showSortingOptions)
         )
-        
-        view.addSubview(searchBar)
-        searchBar.delegate = self
-        searchBar.placeholder = Constants.Strings.searchBarPlaceholder
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+    }
+    
+    private func fetchLaunches() {
+        viewModel.fetchLaunches {
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
+    }
+    
+    @objc private func refreshLaunches() {
+        fetchLaunches()
     }
     
     @objc private func showSortingOptions() {
