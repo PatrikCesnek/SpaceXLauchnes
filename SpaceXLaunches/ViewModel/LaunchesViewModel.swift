@@ -1,0 +1,72 @@
+//
+//  LaunchesViewModel.swift
+//  SpaceXLaunches
+//
+//  Created by Patrik Cesnek on 21/03/2025.
+//
+
+import UIKit
+
+class LaunchesViewModel: NSObject {
+    private var launches: [Launch] = []
+    var filteredLaunches: [Launch] = []
+    var sortingOption: SortingOption = .dateDescending
+    
+    enum SortingOption: CaseIterable {
+        case dateAscending
+        case dateDescending
+        case missionName
+
+        var localized: String {
+            switch self {
+            case .dateAscending: return Constants.Strings.dateAscending
+            case .dateDescending: return Constants.Strings.dateDescending
+            case .missionName: return Constants.Strings.missionName
+            }
+        }
+    }
+    
+    func fetchLaunches(completion: @escaping (String?) -> Void) {
+        APIManager.shared.fetchLaunches { result in
+            switch result {
+            case .success(let launches):
+                self.launches = launches
+                self.applySorting()
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            case .failure(let error):
+                print("Error fetching launches: \(error)")
+                DispatchQueue.main.async {
+                    completion(Constants.Strings.errorMessage)
+                }
+            }
+        }
+    }
+    
+    func applySorting() {
+        switch sortingOption {
+        case .dateAscending:
+            filteredLaunches = launches.sorted { $0.launchDate < $1.launchDate }
+        case .dateDescending:
+            filteredLaunches = launches.sorted { $0.launchDate > $1.launchDate }
+        case .missionName:
+            filteredLaunches = launches.sorted { $0.missionName < $1.missionName }
+        }
+    }
+    
+    func searchLaunches(query: String) {
+        if query.isEmpty {
+            applySorting()
+        } else {
+            filteredLaunches = launches.filter { $0.missionName.lowercased().contains(query.lowercased()) }
+        }
+    }
+    
+    func formattedDate(for launch: Launch) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter.string(from: launch.launchDate)
+    }
+}
